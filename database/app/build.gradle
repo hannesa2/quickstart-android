@@ -9,9 +9,9 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.google.firebase.quickstart.database"
-        minSdkVersion 16
-        targetSdkVersion 28
+        applicationId "info.hannes.firebase.quickstart.database"
+        minSdkVersion 14
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
@@ -60,4 +60,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
