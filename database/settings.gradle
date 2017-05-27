@@ -1,4 +1,4 @@
-include ':app'
+include ':app', 'mydbapp'
 
 // Required so that gradle can resolve these dependencies even when
 // building only a single project.
