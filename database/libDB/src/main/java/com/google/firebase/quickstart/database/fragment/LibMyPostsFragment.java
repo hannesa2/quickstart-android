@@ -3,9 +3,9 @@ package com.google.firebase.quickstart.database.fragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
-public class MyPostsFragment extends PostListFragment {
+public class LibMyPostsFragment extends LibPostListFragment {
 
-    public MyPostsFragment() {}
+    public LibMyPostsFragment() {}
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {

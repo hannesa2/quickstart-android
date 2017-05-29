@@ -19,9 +19,9 @@ import com.google.firebase.quickstart.database.models.User;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewPostActivity extends BaseActivity {
+public class LibNewPostActivity extends BaseActivity {
 
-    private static final String TAG = "NewPostActivity";
+    private static final String TAG = "LibNewPostActivity";
     private static final String REQUIRED = "Required";
 
     // [START declare_database_ref]
@@ -86,7 +86,7 @@ public class NewPostActivity extends BaseActivity {
                         if (user == null) {
                             // User is null, error out
                             Log.e(TAG, "User " + userId + " is unexpectedly null");
-                            Toast.makeText(NewPostActivity.this,
+                            Toast.makeText(LibNewPostActivity.this,
                                     "Error: could not fetch user.",
                                     Toast.LENGTH_SHORT).show();
                         } else {

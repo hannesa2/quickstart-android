@@ -19,9 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.quickstart.database.models.User;
 
-public class SignInActivity extends BaseActivity implements View.OnClickListener {
+public class LibSignInActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "SignInActivity";
+    private static final String TAG = "LibSignInActivity";
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -80,7 +80,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign In Failed",
+                            Toast.makeText(LibSignInActivity.this, "Sign In Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -107,7 +107,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(SignInActivity.this, "Sign Up Failed",
+                            Toast.makeText(LibSignInActivity.this, "Sign Up Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -120,8 +120,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         // Write new user
         writeNewUser(user.getUid(), username, user.getEmail());
 
-        // Go to MainActivity
-        startActivity(new Intent(SignInActivity.this, MainActivity.class));
+        // Go to LibMainActivity
+        startActivity(new Intent(LibSignInActivity.this, LibMainActivity.class));
         finish();
     }
 

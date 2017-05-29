@@ -30,7 +30,7 @@ import static org.hamcrest.CoreMatchers.allOf;
 public class NewPostTest {
 
     @Rule
-    public ActivityTestRule<SignInActivity> mActivityTestRule = new ActivityTestRule<>(SignInActivity.class);
+    public ActivityTestRule<LibSignInActivity> mActivityTestRule = new ActivityTestRule<>(LibSignInActivity.class);
 
     @Test
     public void newPostTest() {

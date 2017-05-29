@@ -19,14 +19,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
-import com.google.firebase.quickstart.database.PostDetailActivity;
+import com.google.firebase.quickstart.database.LibPostDetailActivity;
 import com.google.firebase.quickstart.database.R;
 import com.google.firebase.quickstart.database.models.Post;
 import com.google.firebase.quickstart.database.viewholder.PostViewHolder;
 
-public abstract class PostListFragment extends Fragment {
+public abstract class LibPostListFragment extends Fragment {
 
-    private static final String TAG = "PostListFragment";
+    private static final String TAG = "LibPostListFragment";
 
     // [START define_database_reference]
     private DatabaseReference mDatabase;
@@ -36,7 +36,7 @@ public abstract class PostListFragment extends Fragment {
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
-    public PostListFragment() {}
+    public LibPostListFragment() {}
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
@@ -77,9 +77,9 @@ public abstract class PostListFragment extends Fragment {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Launch PostDetailActivity
-                        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
-                        intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+                        // Launch LibPostDetailActivity
+                        Intent intent = new Intent(getActivity(), LibPostDetailActivity.class);
+                        intent.putExtra(LibPostDetailActivity.EXTRA_POST_KEY, postKey);
                         startActivity(intent);
                     }
                 });

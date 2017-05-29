@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.firebase.quickstart.database.SignInActivity;
+import com.google.firebase.quickstart.database.LibSignInActivity;
 
 public class MyMainActivity extends AppCompatActivity {
 
@@ -17,11 +17,12 @@ public class MyMainActivity extends AppCompatActivity {
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyMainActivity.this, SignInActivity.class));
+                startActivity(new Intent(MyMainActivity.this, LibSignInActivity.class));
             }
         });
         TextView testApplicationID = (TextView) findViewById(R.id.textApp);
+        String[] token = BuildConfig.APPLICATION_ID.split("\\.");
         testApplicationID.setText(BuildConfig.APPLICATION_ID);
-
+        setTitle(token[token.length - 1]);
     }
 }

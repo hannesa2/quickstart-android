@@ -9,10 +9,10 @@ public class DBApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        setupFirebase();
+        setupLibFirebase();
     }
 
-    private void setupFirebase() {
+    private void setupLibFirebase() {
         FirebaseOptions.Builder builder = new FirebaseOptions.Builder();
         builder.setApplicationId("info.hannes.firebase.quickstart.database");
         builder.setApiKey("AIzaSyATyo6Xmq2lFJpQ3LP9KJvlo_vZE-xGnEk");

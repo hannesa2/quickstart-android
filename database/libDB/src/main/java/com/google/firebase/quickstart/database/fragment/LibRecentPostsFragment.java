@@ -3,9 +3,9 @@ package com.google.firebase.quickstart.database.fragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 
-public class RecentPostsFragment extends PostListFragment {
+public class LibRecentPostsFragment extends LibPostListFragment {
 
-    public RecentPostsFragment() {}
+    public LibRecentPostsFragment() {}
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
