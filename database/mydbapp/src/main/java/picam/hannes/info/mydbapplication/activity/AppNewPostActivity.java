@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database;
+package picam.hannes.info.mydbapplication.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,37 +13,39 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.quickstart.database.models.Post;
-import com.google.firebase.quickstart.database.models.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LibNewPostActivity extends LibBaseActivity {
+import picam.hannes.info.mydbapplication.MyApp;
+import picam.hannes.info.mydbapplication.models.Post;
+import picam.hannes.info.mydbapplication.models.User;
 
-    private static final String TAG = "LibNewPostActivity";
+public class AppNewPostActivity extends AppBaseActivity {
+
+    private static final String TAG      = "AppNewPostActivity";
     private static final String REQUIRED = "Required";
 
     // [START declare_database_ref]
     private DatabaseReference mDatabase;
     // [END declare_database_ref]
 
-    private EditText mTitleField;
-    private EditText mBodyField;
+    private EditText             mTitleField;
+    private EditText             mBodyField;
     private FloatingActionButton mSubmitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_post);
+        setContentView(com.google.firebase.quickstart.database.R.layout.activity_new_post);
 
         // [START initialize_database_ref]
-        mDatabase = FirebaseDatabase.getInstance(LibApp.fbApp).getReference();
+        mDatabase = FirebaseDatabase.getInstance(MyApp.fbApp).getReference();
         // [END initialize_database_ref]
 
-        mTitleField = (EditText) findViewById(R.id.field_title);
-        mBodyField = (EditText) findViewById(R.id.field_body);
-        mSubmitButton = (FloatingActionButton) findViewById(R.id.fab_submit_post);
+        mTitleField = (EditText) findViewById(com.google.firebase.quickstart.database.R.id.field_title);
+        mBodyField = (EditText) findViewById(com.google.firebase.quickstart.database.R.id.field_body);
+        mSubmitButton = (FloatingActionButton) findViewById(com.google.firebase.quickstart.database.R.id.fab_submit_post);
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +88,7 @@ public class LibNewPostActivity extends LibBaseActivity {
                         if (user == null) {
                             // User is null, error out
                             Log.e(TAG, "User " + userId + " is unexpectedly null");
-                            Toast.makeText(LibNewPostActivity.this,
+                            Toast.makeText(AppNewPostActivity.this,
                                     "Error: could not fetch user.",
                                     Toast.LENGTH_SHORT).show();
                         } else {

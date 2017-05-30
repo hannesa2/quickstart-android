@@ -5,7 +5,11 @@ import android.app.Application;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
-public class DBApp extends Application {
+public abstract class LibApp extends Application {
+
+    public static String DB_LIB = "lib";
+    public static FirebaseApp fbApp;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -19,6 +23,6 @@ public class DBApp extends Application {
         builder.setDatabaseUrl("https://db-demo-b395f.firebaseio.com");
 //        builder.setGcmSenderId(gcmSenderId);
 //        builder.setStorageBucket(storageBucket);
-        FirebaseApp.initializeApp(this, builder.build());
+        fbApp = FirebaseApp.initializeApp(this, builder.build(), DB_LIB);
     }
 }

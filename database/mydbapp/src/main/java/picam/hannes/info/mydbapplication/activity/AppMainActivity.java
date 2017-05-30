@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.firebase.quickstart.database;
+package picam.hannes.info.mydbapplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,74 +27,77 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.quickstart.database.fragment.LibMyPostsFragment;
-import com.google.firebase.quickstart.database.fragment.LibMyTopPostsFragment;
-import com.google.firebase.quickstart.database.fragment.LibRecentPostsFragment;
 
-public class LibMainActivity extends LibBaseActivity {
+import picam.hannes.info.mydbapplication.MyApp;
+import picam.hannes.info.mydbapplication.fragment.AppMyPostsFragment;
+import picam.hannes.info.mydbapplication.fragment.AppMyTopPostsFragment;
+import picam.hannes.info.mydbapplication.fragment.AppRecentPostsFragment;
 
-    private static final String TAG = "LibMainActivity";
+public class AppMainActivity extends AppBaseActivity {
 
     private FragmentPagerAdapter mPagerAdapter;
-    private ViewPager mViewPager;
+    private ViewPager            mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(com.google.firebase.quickstart.database.R.layout.activity_main);
 
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
-            private final Fragment[] mFragments = new Fragment[] {
-                    new LibRecentPostsFragment(),
-                    new LibMyPostsFragment(),
-                    new LibMyTopPostsFragment(),
+            private final Fragment[] mFragments = new Fragment[]{
+                    new AppRecentPostsFragment(),
+                    new AppMyPostsFragment(),
+                    new AppMyTopPostsFragment(),
             };
-            private final String[] mFragmentNames = new String[] {
-                    getString(R.string.heading_recent),
-                    getString(R.string.heading_my_posts),
-                    getString(R.string.heading_my_top_posts)
+            private final String[] mFragmentNames = new String[]{
+                    getString(com.google.firebase.quickstart.database.R.string.heading_recent),
+                    getString(com.google.firebase.quickstart.database.R.string.heading_my_posts),
+                    getString(com.google.firebase.quickstart.database.R.string.heading_my_top_posts)
             };
+
             @Override
             public Fragment getItem(int position) {
                 return mFragments[position];
             }
+
             @Override
             public int getCount() {
                 return mFragments.length;
             }
+
             @Override
             public CharSequence getPageTitle(int position) {
                 return mFragmentNames[position];
             }
         };
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(com.google.firebase.quickstart.database.R.id.container);
         mViewPager.setAdapter(mPagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(com.google.firebase.quickstart.database.R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        // Button launches LibNewPostActivity
-        findViewById(R.id.fab_new_post).setOnClickListener(new View.OnClickListener() {
+        // Button launches AppNewPostActivity
+        findViewById(com.google.firebase.quickstart.database.R.id.fab_new_post).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LibMainActivity.this, LibNewPostActivity.class));
+                startActivity(new Intent(AppMainActivity.this, AppNewPostActivity.class));
             }
         });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(com.google.firebase.quickstart.database.R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int i = item.getItemId();
-        if (i == R.id.action_logout) {
-            FirebaseAuth.getInstance(LibApp.fbApp).signOut();
-            startActivity(new Intent(this, LibSignInActivity.class));
+        if (i == com.google.firebase.quickstart.database.R.id.action_logout) {
+            FirebaseAuth.getInstance(MyApp.fbApp).signOut();
+            startActivity(new Intent(this, AppSignInActivity.class));
             finish();
             return true;
         } else {

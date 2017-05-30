@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database;
+package picam.hannes.info.mydbapplication.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,36 +19,38 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.quickstart.database.models.User;
-import com.google.firebase.quickstart.database.models.Comment;
-import com.google.firebase.quickstart.database.models.Post;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibPostDetailActivity extends LibBaseActivity implements View.OnClickListener {
+import picam.hannes.info.mydbapplication.MyApp;
+import picam.hannes.info.mydbapplication.models.Comment;
+import picam.hannes.info.mydbapplication.models.Post;
+import picam.hannes.info.mydbapplication.models.User;
 
-    private static final String TAG = "LibPostDetailActivity";
+public class AppPostDetailActivity extends AppBaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "AppPostDetailActivity";
 
     public static final String EXTRA_POST_KEY = "post_key";
 
-    private DatabaseReference mPostReference;
-    private DatabaseReference mCommentsReference;
+    private DatabaseReference  mPostReference;
+    private DatabaseReference  mCommentsReference;
     private ValueEventListener mPostListener;
-    private String mPostKey;
-    private CommentAdapter mAdapter;
+    private String             mPostKey;
+    private CommentAdapter     mAdapter;
 
-    private TextView mAuthorView;
-    private TextView mTitleView;
-    private TextView mBodyView;
-    private EditText mCommentField;
-    private Button mCommentButton;
+    private TextView     mAuthorView;
+    private TextView     mTitleView;
+    private TextView     mBodyView;
+    private EditText     mCommentField;
+    private Button       mCommentButton;
     private RecyclerView mCommentsRecycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_detail);
+        setContentView(com.google.firebase.quickstart.database.R.layout.activity_post_detail);
 
         // Get post key from intent
         mPostKey = getIntent().getStringExtra(EXTRA_POST_KEY);
@@ -57,18 +59,18 @@ public class LibPostDetailActivity extends LibBaseActivity implements View.OnCli
         }
 
         // Initialize Database
-        mPostReference = FirebaseDatabase.getInstance(LibApp.fbApp).getReference()
+        mPostReference = FirebaseDatabase.getInstance(MyApp.fbApp).getReference()
                 .child("posts").child(mPostKey);
-        mCommentsReference = FirebaseDatabase.getInstance(LibApp.fbApp).getReference()
+        mCommentsReference = FirebaseDatabase.getInstance(MyApp.fbApp).getReference()
                 .child("post-comments").child(mPostKey);
 
         // Initialize Views
-        mAuthorView = (TextView) findViewById(R.id.post_author);
-        mTitleView = (TextView) findViewById(R.id.post_title);
-        mBodyView = (TextView) findViewById(R.id.post_body);
-        mCommentField = (EditText) findViewById(R.id.field_comment_text);
-        mCommentButton = (Button) findViewById(R.id.button_post_comment);
-        mCommentsRecycler = (RecyclerView) findViewById(R.id.recycler_comments);
+        mAuthorView = (TextView) findViewById(com.google.firebase.quickstart.database.R.id.post_author);
+        mTitleView = (TextView) findViewById(com.google.firebase.quickstart.database.R.id.post_title);
+        mBodyView = (TextView) findViewById(com.google.firebase.quickstart.database.R.id.post_body);
+        mCommentField = (EditText) findViewById(com.google.firebase.quickstart.database.R.id.field_comment_text);
+        mCommentButton = (Button) findViewById(com.google.firebase.quickstart.database.R.id.button_post_comment);
+        mCommentsRecycler = (RecyclerView) findViewById(com.google.firebase.quickstart.database.R.id.recycler_comments);
 
         mCommentButton.setOnClickListener(this);
         mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -98,7 +100,7 @@ public class LibPostDetailActivity extends LibBaseActivity implements View.OnCli
                 // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
                 // [START_EXCLUDE]
-                Toast.makeText(LibPostDetailActivity.this, "Failed to load post.",
+                Toast.makeText(AppPostDetailActivity.this, "Failed to load post.",
                         Toast.LENGTH_SHORT).show();
                 // [END_EXCLUDE]
             }
@@ -130,14 +132,14 @@ public class LibPostDetailActivity extends LibBaseActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.button_post_comment) {
+        if (i == com.google.firebase.quickstart.database.R.id.button_post_comment) {
             postComment();
         }
     }
 
     private void postComment() {
         final String uid = getUid();
-        FirebaseDatabase.getInstance(LibApp.fbApp).getReference().child("users").child(uid)
+        FirebaseDatabase.getInstance(MyApp.fbApp).getReference().child("users").child(uid)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -171,19 +173,19 @@ public class LibPostDetailActivity extends LibBaseActivity implements View.OnCli
         public CommentViewHolder(View itemView) {
             super(itemView);
 
-            authorView = (TextView) itemView.findViewById(R.id.comment_author);
-            bodyView = (TextView) itemView.findViewById(R.id.comment_body);
+            authorView = (TextView) itemView.findViewById(com.google.firebase.quickstart.database.R.id.comment_author);
+            bodyView = (TextView) itemView.findViewById(com.google.firebase.quickstart.database.R.id.comment_body);
         }
     }
 
     private static class CommentAdapter extends RecyclerView.Adapter<CommentViewHolder> {
 
-        private Context mContext;
-        private DatabaseReference mDatabaseReference;
+        private Context            mContext;
+        private DatabaseReference  mDatabaseReference;
         private ChildEventListener mChildEventListener;
 
-        private List<String> mCommentIds = new ArrayList<>();
-        private List<Comment> mComments = new ArrayList<>();
+        private List<String>  mCommentIds = new ArrayList<>();
+        private List<Comment> mComments   = new ArrayList<>();
 
         public CommentAdapter(final Context context, DatabaseReference ref) {
             mContext = context;
@@ -282,7 +284,7 @@ public class LibPostDetailActivity extends LibBaseActivity implements View.OnCli
         @Override
         public CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
-            View view = inflater.inflate(R.layout.item_comment, parent, false);
+            View view = inflater.inflate(com.google.firebase.quickstart.database.R.layout.item_comment, parent, false);
             return new CommentViewHolder(view);
         }
 

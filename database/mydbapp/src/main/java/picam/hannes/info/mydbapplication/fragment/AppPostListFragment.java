@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database.fragment;
+package picam.hannes.info.mydbapplication.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,15 +19,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
-import com.google.firebase.quickstart.database.LibApp;
-import com.google.firebase.quickstart.database.LibPostDetailActivity;
 import com.google.firebase.quickstart.database.R;
-import com.google.firebase.quickstart.database.models.Post;
-import com.google.firebase.quickstart.database.viewholder.PostViewHolder;
 
-public abstract class LibPostListFragment extends Fragment {
+import picam.hannes.info.mydbapplication.MyApp;
+import picam.hannes.info.mydbapplication.activity.AppPostDetailActivity;
+import picam.hannes.info.mydbapplication.models.Post;
+import picam.hannes.info.mydbapplication.viewholder.PostViewHolder;
 
-    private static final String TAG = "LibPostListFragment";
+public abstract class AppPostListFragment extends Fragment {
+
+    private static final String TAG = "AppPostListFragment";
 
     // [START define_database_reference]
     private DatabaseReference mDatabase;
@@ -37,16 +38,16 @@ public abstract class LibPostListFragment extends Fragment {
     private RecyclerView                                  mRecycler;
     private LinearLayoutManager                           mManager;
 
-    public LibPostListFragment() {
-    }
+    public AppPostListFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView (LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_all_posts, container, false);
 
         // [START create_database_reference]
-        mDatabase = FirebaseDatabase.getInstance(LibApp.fbApp).getReference();
+        mDatabase = FirebaseDatabase.getInstance(MyApp.fbApp).getReference();
         // [END create_database_reference]
 
         mRecycler = (RecyclerView) rootView.findViewById(R.id.messages_list);
@@ -78,9 +79,9 @@ public abstract class LibPostListFragment extends Fragment {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Launch LibPostDetailActivity
-                        Intent intent = new Intent(getActivity(), LibPostDetailActivity.class);
-                        intent.putExtra(LibPostDetailActivity.EXTRA_POST_KEY, postKey);
+                        // Launch AppPostDetailActivity
+                        Intent intent = new Intent(getActivity(), AppPostDetailActivity.class);
+                        intent.putExtra(AppPostDetailActivity.EXTRA_POST_KEY, postKey);
                         startActivity(intent);
                     }
                 });
@@ -154,7 +155,7 @@ public abstract class LibPostListFragment extends Fragment {
     }
 
     public String getUid() {
-        return FirebaseAuth.getInstance(LibApp.fbApp).getCurrentUser().getUid();
+        return FirebaseAuth.getInstance(MyApp.fbApp).getCurrentUser().getUid();
     }
 
     public abstract Query getQuery(DatabaseReference databaseReference);

@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.database;
+package picam.hannes.info.mydbapplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,33 +17,35 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.quickstart.database.models.User;
 
-public class LibSignInActivity extends LibBaseActivity implements View.OnClickListener {
+import picam.hannes.info.mydbapplication.MyApp;
+import picam.hannes.info.mydbapplication.models.User;
 
-    private static final String TAG = "LibSignInActivity";
+public class AppSignInActivity extends AppBaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "AppSignInActivity";
 
     private DatabaseReference mDatabase;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth      mAuth;
 
     private EditText mEmailField;
     private EditText mPasswordField;
-    private Button mSignInButton;
-    private Button mSignUpButton;
+    private Button   mSignInButton;
+    private Button   mSignUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(com.google.firebase.quickstart.database.R.layout.activity_sign_in);
 
-        mDatabase = FirebaseDatabase.getInstance(LibApp.fbApp).getReference();
-        mAuth = FirebaseAuth.getInstance(LibApp.fbApp);
+        mDatabase = FirebaseDatabase.getInstance(MyApp.fbApp).getReference();
+        mAuth = FirebaseAuth.getInstance(MyApp.fbApp);
 
         // Views
-        mEmailField = (EditText) findViewById(R.id.field_email);
-        mPasswordField = (EditText) findViewById(R.id.field_password);
-        mSignInButton = (Button) findViewById(R.id.button_sign_in);
-        mSignUpButton = (Button) findViewById(R.id.button_sign_up);
+        mEmailField = (EditText) findViewById(com.google.firebase.quickstart.database.R.id.field_email);
+        mPasswordField = (EditText) findViewById(com.google.firebase.quickstart.database.R.id.field_password);
+        mSignInButton = (Button) findViewById(com.google.firebase.quickstart.database.R.id.button_sign_in);
+        mSignUpButton = (Button) findViewById(com.google.firebase.quickstart.database.R.id.button_sign_up);
 
         // Click listeners
         mSignInButton.setOnClickListener(this);
@@ -80,7 +82,7 @@ public class LibSignInActivity extends LibBaseActivity implements View.OnClickLi
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(LibSignInActivity.this, "Sign In Failed",
+                            Toast.makeText(AppSignInActivity.this, "Sign In Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -107,7 +109,7 @@ public class LibSignInActivity extends LibBaseActivity implements View.OnClickLi
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(LibSignInActivity.this, "Sign Up Failed",
+                            Toast.makeText(AppSignInActivity.this, "Sign Up Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -120,8 +122,8 @@ public class LibSignInActivity extends LibBaseActivity implements View.OnClickLi
         // Write new user
         writeNewUser(user.getUid(), username, user.getEmail());
 
-        // Go to LibMainActivity
-        startActivity(new Intent(LibSignInActivity.this, LibMainActivity.class));
+        // Go to AppMainActivity
+        startActivity(new Intent(AppSignInActivity.this, AppMainActivity.class));
         finish();
     }
 
@@ -163,9 +165,9 @@ public class LibSignInActivity extends LibBaseActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.button_sign_in) {
+        if (i == com.google.firebase.quickstart.database.R.id.button_sign_in) {
             signIn();
-        } else if (i == R.id.button_sign_up) {
+        } else if (i == com.google.firebase.quickstart.database.R.id.button_sign_up) {
             signUp();
         }
     }

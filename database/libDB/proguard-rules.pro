@@ -28,3 +28,5 @@
 -keepclassmembers class com.google.firebase.quickstart.database.models.** {
     *;
 }
+
+-keep public class **.BuildConfig { *; }

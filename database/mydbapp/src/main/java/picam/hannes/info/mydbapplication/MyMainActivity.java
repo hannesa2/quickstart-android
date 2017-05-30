@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.google.firebase.quickstart.database.LibSignInActivity;
 
+import picam.hannes.info.mydbapplication.activity.AppSignInActivity;
+
 public class MyMainActivity extends AppCompatActivity {
 
     @Override
@@ -18,6 +20,12 @@ public class MyMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MyMainActivity.this, LibSignInActivity.class));
+            }
+        });
+        findViewById(R.id.buttonApp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyMainActivity.this, AppSignInActivity.class));
             }
         });
         TextView testApplicationID = (TextView) findViewById(R.id.textApp);
