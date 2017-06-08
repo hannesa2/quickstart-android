@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "139237833266",
+    "firebase_url": "https://demoapp1-fb31c.firebaseio.com",
+    "project_id": "demoapp1-fb31c",
+    "storage_bucket": "demoapp1-fb31c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139237833266:android:09317897e728c4a7",
+        "android_client_info": {
+          "package_name": "picam.hannes.info.mydbapplication1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139237833266-hk6gsudj02ktpn58rjdasqtcmreif29h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByZE5qimXK1x42LkSsj2g7SLc6whQcWYk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

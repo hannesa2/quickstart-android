@@ -18,10 +18,10 @@ public class MyApp extends LibApp {
     private void setupAppFirebase() {
         FirebaseOptions.Builder builder = new FirebaseOptions.Builder();
         builder.setApplicationId(BuildConfig.APPLICATION_ID);
-        builder.setApiKey("AIzaSyAITvMrg9SL9Idu8aAncR26_RH_UEDHL2Q");
-        builder.setDatabaseUrl("https://mx-tracks-info.firebaseio.com");
+        builder.setApiKey(BuildConfig.API_KEY);
+        builder.setDatabaseUrl(BuildConfig.DATABASE_URL);
 //        builder.setGcmSenderId(gcmSenderId);
-        builder.setStorageBucket("mx-tracks-info.appspot.com");
+        builder.setStorageBucket(BuildConfig.STORAGEBUCKET);
         fbApp = FirebaseApp.initializeApp(this, builder.build(), DB_APP);
     }
 }

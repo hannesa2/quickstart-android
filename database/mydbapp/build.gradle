@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def apiKey = 'API_KEY'
+def databaseUrl = 'DATABASE_URL'
+def storageBucket = 'STORAGEBUCKET'
+
 def getGitCommitCount() {
     def process = "git rev-list HEAD --count".execute()
     return process.text.toInteger()
@@ -16,6 +20,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+
+        buildConfigField "String", apiKey, "\"nix\""
+        buildConfigField "String", databaseUrl, "\"nix\""
+        buildConfigField "String", storageBucket, "\"nix\""
     }
 
     buildTypes {
@@ -31,15 +39,23 @@ android {
     productFlavors {
         V1 {
             dimension "AppNumber"
-            applicationId "picam.hannes.info.mydbapplication1"
             versionName version + ".V2." + getGitCommitCount()
             resValue "string", "app_name", "App1"
+
+            applicationId "picam.hannes.info.mydbapplicyation1"
+            buildConfigField "String", apiKey, "\"AIzaSyByZE5qimXK1x42LkSsj2g7SLc6whQcWYk\""
+            buildConfigField "String", databaseUrl, "\"https://demoapp1-fb31c.firebaseio.com\""
+            buildConfigField "String", storageBucket, "\"demoapp1-fb31c.appspot.com\""
         }
         V2 {
             dimension "AppNumber"
-            applicationId "picam.hannes.info.mydbapplication2"
             versionName version + ".V1." + getGitCommitCount()
             resValue "string", "app_name", "App2"
+
+            applicationId "picam.hannes.info.mydbapplication2"
+            buildConfigField "String", apiKey, "\"AIzaSyBp3fKPSwmRcN59Tg1gCHpGj6KfSR5hfLs\""
+            buildConfigField "String", databaseUrl, "\"https://demoapp2-14000.firebaseio.com\""
+            buildConfigField "String", storageBucket, "\"demoapp2-14000.appspot.com\""
         }
     }
 
