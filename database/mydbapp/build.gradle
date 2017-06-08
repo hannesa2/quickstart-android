@@ -26,13 +26,17 @@ android {
     }
 
 
+    flavorDimensions "AppNumber"
+
     productFlavors {
         V1 {
+            dimension "AppNumber"
             applicationId "picam.hannes.info.mydbapplication1"
             versionName version + ".V2." + getGitCommitCount()
             resValue "string", "app_name", "App1"
         }
         V2 {
+            dimension "AppNumber"
             applicationId "picam.hannes.info.mydbapplication2"
             versionName version + ".V1." + getGitCommitCount()
             resValue "string", "app_name", "App2"
