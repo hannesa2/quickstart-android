@@ -1,6 +1,7 @@
 package com.google.firebase.quickstart.database;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -13,16 +14,16 @@ public abstract class LibApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        setupLibFirebase();
+        setupLibFirebase(this);
     }
 
-    private void setupLibFirebase() {
+    public static void setupLibFirebase(Context context) {
         FirebaseOptions.Builder builder = new FirebaseOptions.Builder();
         builder.setApplicationId("info.hannes.firebase.quickstart.database");
         builder.setApiKey("AIzaSyATyo6Xmq2lFJpQ3LP9KJvlo_vZE-xGnEk");
         builder.setDatabaseUrl("https://db-demo-b395f.firebaseio.com");
 //        builder.setGcmSenderId(gcmSenderId);
 //        builder.setStorageBucket(storageBucket);
-        fbApp = FirebaseApp.initializeApp(this, builder.build(), DB_LIB);
+        fbApp = FirebaseApp.initializeApp(context, builder.build(), DB_LIB);
     }
 }
